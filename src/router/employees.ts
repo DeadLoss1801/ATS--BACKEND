@@ -122,9 +122,39 @@ export default (router: express.Router) => {
    *              - "married"
    *              - "divorced"
    *              - "widowed"
+   *          home_city:
+   *            type: String
+   *            description: Home city/ town
+   *          dob:
+   *            type: Date
+   *            description: Date of Birth
    *
    */
+
+  /**
+   * @swagger
+   * tags:
+   *   name: Employee
+   *   description: Employee API
+   */
+  /**
+   * @swagger
+   * /employee:
+   *   get:
+   *     summary: Returns the list of all employees
+   *     tags: [Employee]
+   *     responses:
+   *       200:
+   *         description: The list of the employees
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 $ref: '#/components/schemas/Book'
+   */
   router.get("/employee", getAllEmployees);
+
   router.post("/employee", create);
   router.patch("/employee", updateEmployee);
   router.delete("/employee", deleteEmployee);
