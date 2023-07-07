@@ -42,6 +42,7 @@ const employeeSchema = new mongoose.Schema({
   },
   totalExperience: {
     type: Number,
+    required: true,
     min: 0,
   },
   relevantExperience: {
@@ -97,7 +98,6 @@ const employeeSchema = new mongoose.Schema({
   },
   martial_status: {
     type: String,
-    required: true,
     enum: ["single", "married", "divorced", "widowed"],
   },
   home_city: {

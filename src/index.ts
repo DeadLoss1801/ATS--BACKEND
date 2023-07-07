@@ -3,20 +3,41 @@ import http from "http";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import router from "./router";
-
+import swaggerUI from "swagger-ui-express";
+import swaggerJsDoc, { Options } from "swagger-jsdoc";
 const app = express();
+
 dotenv.config();
 
 app.use(express.json());
 
-app.get("/", (req: express.Request, res: express.Response) => {
-  return res
-    .status(200)
-    .send({
-      message: "Jo",
-    })
-    .end();
-});
+const options: Options = {
+  definition: {
+    openapi: "3.0.1",
+    info: {
+      title: "ATS-Track",
+      version: "1.0.0",
+      description: "Applicant Tracking System",
+    },
+    servers: [
+      {
+        url: "http://localhost:8000",
+      },
+    ],
+  },
+  apis: ["./**/*.ts"],
+};
+
+const specs = swaggerJsDoc(options);
+
+// app.get("/", (req: express.Request, res: express.Response) => {
+//   return res
+//     .status(200)
+//     .send({
+//       message: "Jo",
+//     })
+//     .end();
+// });
 
 const server = http.createServer(app);
 
@@ -30,3 +51,4 @@ mongoose.connect(MONGO_URL);
 mongoose.connection.on("error", (error: Error) => console.log(error));
 
 app.use("/", router());
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
