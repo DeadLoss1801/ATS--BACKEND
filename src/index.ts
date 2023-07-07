@@ -29,15 +29,16 @@ const options: Options = {
 };
 
 const specs = swaggerJsDoc(options);
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
-// app.get("/", (req: express.Request, res: express.Response) => {
-//   return res
-//     .status(200)
-//     .send({
-//       message: "Jo",
-//     })
-//     .end();
-// });
+app.get("/", (req: express.Request, res: express.Response) => {
+  return res
+    .status(200)
+    .send({
+      message: "Jo",
+    })
+    .end();
+});
 
 const server = http.createServer(app);
 
@@ -51,4 +52,3 @@ mongoose.connect(MONGO_URL);
 mongoose.connection.on("error", (error: Error) => console.log(error));
 
 app.use("/", router());
-app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));

@@ -149,11 +149,21 @@ export default (router: express.Router) => {
    *         content:
    *           application/json:
    *             schema:
-   *               type: array
-   *               items:
-   *                 $ref: '#/components/schemas/Book'
+   *               type: object
    */
   router.get("/employee", getAllEmployees);
+
+  // /**
+  //  * @swagger
+  //  * /employee
+  //  *  post:
+  //  *    summary: to add the employee
+  //  *    tags: [Employee]
+  //  *    description: to add details of emplee
+  //  *    responses:
+  //  *      201:
+  //  *
+  //  */
 
   router.post("/employee", create);
   router.patch("/employee", updateEmployee);
