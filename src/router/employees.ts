@@ -188,6 +188,7 @@ export default (router: express.Router) => {
    * /employee:
    *    post:
    *      summary: Add a new employee
+   *      tags: [Employee]
    *      description: Add a new employee for interview
    *      requestBody:
    *        description: Add a new employee
@@ -203,6 +204,56 @@ export default (router: express.Router) => {
    */
 
   router.post("/employee", create);
-  router.patch("/employee", updateEmployee);
-  router.delete("/employee", deleteEmployee);
+
+  /**
+   * @swagger
+   * /employee/{employeeId}:
+   *    patch:
+   *      summary: Update employee details
+   *      description: Update employee details
+   *      tags: [Employee]
+   *      parameters:
+   *        - name: employeeId
+   *          in: path
+   *          description: Id of employee
+   *          required: true
+   *          schema:
+   *            type: string
+   *      requestBody:
+   *        description: Values to update in employee
+   *        content:
+   *          application/json:
+   *            schema:
+   *              type: object
+   *      responses:
+   *        "200":
+   *           description: "Employee is updated"
+   *
+   *
+   */
+
+  router.patch("/employee/:id", updateEmployee);
+
+  /**
+   * @swagger
+   * /employee/{employeeId}:
+   *    delete:
+   *      summary: Delete employee details
+   *      description: Delete employee details
+   *      tags: [Employee]
+   *      parameters:
+   *        - name: employeeId
+   *          in: path
+   *          description: Id of employee
+   *          required: true
+   *          schema:
+   *            type: string
+   *      responses:
+   *        "200":
+   *           description: "Employee is deleted"
+   *
+   *
+   */
+
+  router.delete("/employee/:id", deleteEmployee);
 };

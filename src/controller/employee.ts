@@ -1,8 +1,8 @@
 import {
   createEmployee,
-  deleteEmployeeByEmail,
+  deleteEmployeeById,
   getEmployeeByEmail,
-  updateEmployeeByEmail,
+  updateEmployeeById,
   getEmployees,
 } from "../db/employee";
 import express from "express";
@@ -27,8 +27,9 @@ export const updateEmployee = async (
   res: express.Response
 ) => {
   try {
-    const { email, values } = req.body;
-    const updatedEmployee = await updateEmployeeByEmail(email, values);
+    const id = req.params.id;
+    const values = req.body;
+    const updatedEmployee = await updateEmployeeById(id, values);
 
     return res.status(200).json(updatedEmployee).end();
   } catch (error) {
@@ -48,9 +49,15 @@ export const deleteEmployee = async (
 ) => {
   try {
     const { email, values } = req.body;
-    const deletedEmployee = await deleteEmployeeByEmail(email);
+    const deletedEmployee = await deleteEmployeeById(email);
 
-    return res.status(200).json(deletedEmployee).end();
+    return res
+      .status(200)
+      .json({
+        message: "Employee is deleted",
+        deletedEmployee,
+      })
+      .end();
   } catch (error) {
     console.log(error);
     return res

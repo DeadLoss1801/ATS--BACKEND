@@ -120,10 +120,8 @@ export const getEmployees = () => EmployeeModel.find();
 export const getEmployeeByEmail = (email: string) =>
   EmployeeModel.findOne({ email });
 
-export const deleteEmployeeByEmail = (email: string) =>
-  EmployeeModel.findOneAndDelete({ email });
+export const deleteEmployeeById = (id: string) =>
+  EmployeeModel.findByIdAndDelete(id);
 
-export const updateEmployeeByEmail = (
-  email: string,
-  values: Record<string, any>
-) => EmployeeModel.findByIdAndUpdate({ email }, values);
+export const updateEmployeeById = (id: string, values: Record<string, any>) =>
+  EmployeeModel.findByIdAndUpdate(id, values);
