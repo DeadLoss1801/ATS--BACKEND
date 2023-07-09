@@ -4,13 +4,13 @@ import {
   getAllInterviewers,
   getInterviewerById,
   updateInterviewerById,
-} from "controller/interviewer";
+} from "../controller/interviewer";
 import express from "express";
 
 export default (router: express.Router) => {
-  router.get("/", getAllInterviewers);
-  router.post("/", createInterviewer);
-  router.get("/:id", getInterviewerById);
-  router.patch("/:id", updateInterviewerById);
-  router.delete("/:id", deleteInterviewerById);
+  router.get("/interviewer", getAllInterviewers);
+  router.post("/interviewer", createInterviewer);
+  router.get("/interviewer/:id", getInterviewerById);
+  router.patch("/interviewer/:id", updateInterviewerById);
+  router.delete("/interviewer/:id", deleteInterviewerById);
 };

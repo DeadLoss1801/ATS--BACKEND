@@ -55,7 +55,10 @@ export const getInterviewerById = async (
 ) => {
   try {
     const id = req.params.id;
-    const interviewer = await InterviewerModel.findById(id, req.body);
+    const interviewer = await InterviewerModel.findById(id, req.body).populate(
+      "companyName",
+      ["companyName", "email"]
+    );
 
     return res.status(200).json({
       message: "success",

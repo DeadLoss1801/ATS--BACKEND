@@ -1,4 +1,4 @@
-import { EmployerModel } from "db/employer";
+import { EmployerModel } from "../db/employer";
 import express from "express";
 
 export const createEmployer = async (
