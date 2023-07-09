@@ -55,7 +55,10 @@ export const getEmployerById = async (
 ) => {
   try {
     const id = req.params.id;
-    const employer = await EmployerModel.findById(id);
+    const employer = await EmployerModel.findById(id).populate("interviewers", [
+      "name",
+      "email",
+    ]);
 
     return res.status(200).json({
       message: "success",
