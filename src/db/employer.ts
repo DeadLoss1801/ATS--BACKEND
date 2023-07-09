@@ -16,6 +16,11 @@ const employerSchema = new mongoose.Schema({
       message: "Invalid email address",
     },
   },
+  role: {
+    type: String,
+    required: [true, "Role should be mentioned"],
+    enum: ["Company", "Individual"],
+  },
   password: {
     type: String,
     required: [true, "Password should be present"],
@@ -28,41 +33,26 @@ const employerSchema = new mongoose.Schema({
   },
   phone: {
     type: String,
-    required: [true, "Phone Number should be present"],
+    required: [true, "Contact Number should be mentioned"],
+  },
+  companyName: {
+    type: String,
+    required: [true, "Company Name should be present"],
+  },
+  industry: {
+    type: String,
+    required: [true, "Company's industry should be mentioned"],
+  },
+  designation: {
+    type: String,
+    required: [true, "Designation should be mentioned"],
+  },
+  pincode: {
+    type: String,
+    required: [true, "Pincode should be mentioned"],
   },
   address: {
     type: String,
     required: [true, "Address should be present"],
   },
-  website: {
-    type: String,
-    required: [true, "Website link should be present"],
-  },
-  industry: {
-    type: String, // field
-    required: [true, "Industry should be mentioned"],
-  },
-  size: {
-    type: String,
-  },
-  founded: {
-    type: Date,
-  },
-  description: {
-    type: String,
-  },
-  employees: {
-    type: Number, // no. of employess
-  },
-  socialMediaLinks: {
-    type: mongoose.Schema.Types.Mixed,
-  },
-  logo: {
-    type: String,
-  },
-  images: [
-    {
-      type: String,
-    },
-  ],
 });
