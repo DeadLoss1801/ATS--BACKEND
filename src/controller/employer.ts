@@ -84,8 +84,11 @@ export const updateEmployerById = async (
   try {
     const id = req.params.id;
     const values = req.body;
-    const employer = await EmployerModel.findByIdAndUpdate(id, values);
-
+    const employer = await EmployerModel.findOneAndUpdate(
+      { _id: id },
+      { $push: { interviewers: values.interviewers } }
+    );
+    // for adding new company
     return res.status(200).json({
       message: "Employer successfully updated.",
       data: {
