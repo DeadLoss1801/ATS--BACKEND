@@ -55,4 +55,8 @@ const employerSchema = new mongoose.Schema({
     type: String,
     required: [true, "Address should be present"],
   },
+  interviewers: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: "Interviewer",
+  },
 });

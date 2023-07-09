@@ -59,11 +59,9 @@ const employeeSchema = new mongoose.Schema({
   },
   Role: String,
   Industry: String,
-  skills: [
-    {
-      types: String,
-    },
-  ],
+  skills: {
+    type: [String],
+  },
   ctc: {
     type: Number,
   },
