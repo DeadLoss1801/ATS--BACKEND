@@ -1,3 +1,4 @@
+import { EmployerModel } from "../db/employer";
 import { InterviewerModel } from "../db/interviewer";
 import express from "express";
 
@@ -6,8 +7,13 @@ export const createInterviewer = async (
   res: express.Response
 ) => {
   try {
+    const companyId = req.body.companyName;
     const interviewer = await InterviewerModel.create(req.body);
-
+    await EmployerModel.findOneAndUpdate(
+      { _id: companyId },
+      { $push: { interviewers: interviewer._id } }
+    );
+    await EmployerModel;
     return res.status(200).json({
       message: "success",
       data: {
