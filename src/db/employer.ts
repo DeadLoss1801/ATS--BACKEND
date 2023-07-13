@@ -23,12 +23,12 @@ const employerSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    // required: [true, "Password should be present"],
+    required: [true, "Password should be present"],
     minLength: 8,
   },
   confirmPassword: {
     type: String,
-    // required: [true, "confirm the password"],
+    required: [true, "confirm the password"],
     minLength: 8,
   },
   phone: {
